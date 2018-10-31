@@ -32,6 +32,7 @@ export class GeneralProvider {
   patch(endpoint: string, body: any, reqOpts?: any) {
     return this.http.patch(BASEURL+endpoint, body, reqOpts);
   }
+  
   get(endpoint: string) {
     return this.http.get(BASEURL+endpoint);
   }
