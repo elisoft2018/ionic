@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController} from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { GeneralProvider } from '../../providers/general/general';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 /**
  * Generated class for the AvatarListPage page.
@@ -16,9 +17,10 @@ import { GeneralProvider } from '../../providers/general/general';
 })
 export class AvatarListPage {
 
- comentarios:string
+  comentarios: string
+  image;
 
-  constructor(public navCtrl: NavController, public general: GeneralProvider) {
+  constructor(public navCtrl: NavController, public general: GeneralProvider, public camera: Camera) {
 
     this.general.get('comments').subscribe(
       (data) => {
@@ -29,13 +31,34 @@ export class AvatarListPage {
       })
 
 
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AvatarListPage');
-  
+
   }
-  goToList(){
-  this.navCtrl.push('ListMasterPage');
-}
+  goToList() {
+    this.navCtrl.push('ListMasterPage');
+  }
+
+  getPicture() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      this.image = imageData;
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      // Handle error
+    });
+  }
+
+
+
 }
