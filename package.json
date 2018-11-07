@@ -8,7 +8,8 @@
     "start": "ionic-app-scripts serve",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
-    "lint": "ionic-app-scripts lint"
+    "lint": "ionic-app-scripts lint",
+    "start:server":"npm run build && node server.js"
   },
   "dependencies": {
     "@angular/animations": "5.2.11",
@@ -28,6 +29,7 @@
     "@ionic/storage": "2.2.0",
     "@ngx-translate/core": "8.0.0",
     "@ngx-translate/http-loader": "^2.0.0",
+    "body-parser": "^1.18.3",
     "card.io.cordova.mobilesdk": "2.1.0",
     "cordova-android": "7.1.1",
     "cordova-plugin-camera": "4.0.3",
@@ -37,8 +39,11 @@
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-whitelist": "^1.3.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
+    "morgan": "^1.9.1",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.26"
